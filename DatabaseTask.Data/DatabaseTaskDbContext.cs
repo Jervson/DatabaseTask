@@ -16,5 +16,7 @@ namespace DatabaseTask.Data
         public DbSet<Doctor> Doctor { get; set; }
         public DbSet<Patient> Patient { get; set; }
         public DbSet<Ward> Ward { get; set; }
+
+        // HP-CZC0359NN9
     }
 }

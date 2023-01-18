@@ -9,7 +9,7 @@ namespace DatabaseTask.Core.Domain
     public class Department
     {
         public int Id { get; set; }
-        public string DepartmentNr { get; set; }
+        public int DepartmentNr { get; set; }
         public int Wards { get; set; }
     }
 }

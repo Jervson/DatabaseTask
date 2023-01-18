@@ -15,7 +15,7 @@ namespace DatabaseTask.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DepartmentNr = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DepartmentNr = table.Column<int>(type: "int", nullable: false),
                     Wards = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
