@@ -22,7 +22,7 @@ values (10, 110, 2)
 
 SET IDENTITY_INSERT dEPARTMENT OFF
 
-SET IDENTITY_INSERT PATIENT ON
+SET IDENTITY_INSERT doctor ON
 insert into Doctor(Id, DoctorId, LastName, Phone)
 values (1, 101, 'Harrys', 1234)
 insert into Doctor(Id, DoctorId, LastName, Phone)
@@ -44,6 +44,9 @@ values (9, 109, 'Harrys', 1234)
 insert into Doctor(Id, DoctorId, LastName, Phone)
 values (10, 110, 'Harrys', 1234)
 
+SET IDENTITY_INSERT doctor OFF
+
+SET IDENTITY_INSERT patient ON
 insert into Patient(Id, Name, Phone, Address, Birthday, TreatmentStart, TreatmentEnd)
 values (1, 'Harrys', 1234, 'street 2','1980-12-22', '1994-12-22', '1995-12-22')
 insert into Patient(Id, Name, Phone, Address, Birthday, TreatmentStart, TreatmentEnd)
@@ -64,3 +67,49 @@ insert into Patient(Id, Name, Phone, Address, Birthday, TreatmentStart, Treatmen
 values (9, 'Harrys', 1234, 'street 2','1980-12-22', '1994-12-22', '1995-12-22')
 insert into Patient(Id, Name, Phone, Address, Birthday, TreatmentStart, TreatmentEnd)
 values (10, 'Harrys', 1234, 'street 2','1980-12-22', '1994-12-22', '1995-12-22')
+
+SET IDENTITY_INSERT patient OFF
+
+SET IDENTITY_INSERT Ward ON
+insert into Ward(Id, DepartmentId, RoomNr, PatientName)
+values (1, 101, 101, 'Harrys')
+insert into Ward(Id, DepartmentId, RoomNr, PatientName)
+values (2, 102, 201, 'Harrys')
+insert into Ward(Id, DepartmentId, RoomNr, PatientName)
+values (3, 103, 301, 'Harrys')
+insert into Ward(Id, DepartmentId, RoomNr, PatientName)
+values (4, 104, 401, 'Harrys')
+insert into Ward(Id, DepartmentId, RoomNr, PatientName)
+values (5, 105, 501, 'Harrys')
+insert into Ward(Id, DepartmentId, RoomNr, PatientName)
+values (6, 106, 601, 'Harrys')
+insert into Ward(Id, DepartmentId, RoomNr, PatientName)
+values (7, 107, 701, 'Harrys')
+insert into Ward(Id, DepartmentId, RoomNr, PatientName)
+values (8, 108, 801, 'Harrys')
+insert into Ward(Id, DepartmentId, RoomNr, PatientName)
+values (9, 109, 901, 'Harrys')
+insert into Ward(Id, DepartmentId, RoomNr, PatientName)
+values (10, 110, 1001, 'Harrys')
+SET IDENTITY_INSERT Ward OFF
+
+CREATE PROCEDURE SelectAllPatients
+AS
+SELECT * FROM patient
+GO;
+
+drop procedure SelectAllPatients
+
+exec selectallpatients
+
+Select Doctor.LastName, Doctor.Phone
+FROM doctor
+INNER JOIN patient ON Doctor.Phone = patient.Phone
+
+Select department.DepartmentNr
+FROM Department
+INNER JOIN doctor ON department.id = doctor.id
+
+Select department.wards
+FROM department
+INNER JOIN ward ON department.departmentnr = ward.DepartmentId
